@@ -36,6 +36,37 @@
                includeantruntime="false" debug="true" classpathref="compile.path"/>
     </target>
 
+    <target name="compile-tests" depends="compile">
+        <javac srcdir="${test.src.dir}" destdir="${test.classes.dir}" includeantruntime="false" debug="true">
+            <classpath>
+                <path refid="test.path"/>
+                <pathelement path="${classes.dir}"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <path id="junit.libs">
+        <fileset dir="${ant.home}/lib/junit"/>
+    </path>
+
+    <!--Run unit tests-->
+    <target name="test" depends="compile-tests">
+        <junitlauncher printsummary="true" haltonfailure="yes">
+            <classpath>
+                <path refid="test.path"/>
+                <path refid="junit.libs"/>
+                <pathelement path="${classes.dir}"/>
+                <pathelement path="${test.classes.dir}"/>
+                <pathelement path="${test.reports.dir}"/>
+            </classpath>
+            <testclasses outputdir="${test.reports.dir}">
+                <fileset dir="${test.classes.dir}"/>
+                <listener type="legacy-brief" sendSysOut="true"/>
+                <listener type="legacy-xml" sendSysErr="true" sendSysOut="true"/>
+            </testclasses>
+        </junitlauncher>
+    </target>
+
     <!-- Run the application -->
     <target name="run" depends="compile">
         <java classname="com.circle.application.Main">
@@ -47,7 +78,7 @@
     </target>
 
     <!-- Build   -->
-    <target name="build" depends="compile"/>
+    <target name="build" depends="test"/>
 
     <!-- Create jar   -->
     <target name="build-jar" depends="build">
