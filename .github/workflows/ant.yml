@@ -21,5 +21,9 @@ jobs:
       with:
         java-version: '11'
         distribution: 'temurin'
+    - name: Install IVY
+      run: |
+        cd /usr/share/ant/lib
+        wget https://repo1.maven.org/maven2/org/apache/ivy/ivy/2.5.2/ivy-2.5.2.jar
     - name: Build with Ant
       run: ant -noinput -buildfile build.xml
