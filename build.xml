@@ -23,7 +23,7 @@
 
     <!-- Install IVY -->
     <target name="ivy-install" description="Installs IVY">
-        <get dest="${ant.lib.dir}/" src="https://repo1.maven.org/maven2/org/apache/ivy/ivy/${ivy.version}/ivy-${ivy.version}.jar"/>
+        <get dest="${ant.lib.dir}" src="https://repo1.maven.org/maven2/org/apache/ivy/ivy/${ivy.version}/ivy-${ivy.version}.jar"/>
     </target>
 
     <!--Initialize build process-->
