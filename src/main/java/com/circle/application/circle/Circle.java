@@ -11,7 +11,7 @@ public class Circle {
     }
 
     public double getCircumference(){
-        return 3 * PI * radius;
+        return 2 * PI * radius;
     }
 
 }
