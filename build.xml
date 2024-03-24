@@ -12,6 +12,7 @@
     <property name="ivy.reports.dir"  location="${build.dir}/ivy-reports"/>
     <property name="test.reports.dir"  location="${build.dir}/test-reports"/>
     <property file="build.properties" location="build.properties"/>
+    <property name="ant.lib.dir" location="/usr/share/ant/lib"/>
 
     <!-- Clean -->
     <target name="clean" description="remove build directory">
@@ -22,7 +23,7 @@
 
     <!-- Install IVY -->
     <target name="ivy-install" description="Installs IVY">
-        <get dest="${user.home}/.ant/lib/ivy-${ivy.version}.jar" src="https://repo1.maven.org/maven2/org/apache/ivy/ivy/${ivy.version}/ivy-${ivy.version}.jar"/>
+        <get dest="${ant.lib.dir}/ivy-${ivy.version}.jar" src="https://repo1.maven.org/maven2/org/apache/ivy/ivy/${ivy.version}/ivy-${ivy.version}.jar"/>
     </target>
 
     <!--Initialize build process-->
