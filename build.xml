@@ -22,12 +22,12 @@
     </target>
 
     <!-- Download IVY -->
-    <target name="donwload-ivy" depends="clean" description="Downloads IVY">
+    <target name="download-ivy" depends="clean" description="Downloads IVY">
         <get dest="${ant.lib.dir}" src="https://repo1.maven.org/maven2/org/apache/ivy/ivy/${ivy.version}/ivy-${ivy.version}.jar"/>
     </target>
 
     <!-- Installs IVY -->
-    <target name="install-ivy" description="Installs IVY">
+    <target name="install-ivy" depends="download-ivy" description="Installs IVY">
         <path id="ivy.lib.path">
             <pathelement location="${ant.lib.dir}"/>
         </path>
