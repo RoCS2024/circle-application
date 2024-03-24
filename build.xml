@@ -21,13 +21,20 @@
         </delete>
     </target>
 
-    <!-- Install IVY -->
-    <target name="ivy-install" description="Installs IVY">
+    <!-- Download IVY -->
+    <target name="donwload-ivy" depends="clean" description="Downloads IVY">
         <get dest="${ant.lib.dir}" src="https://repo1.maven.org/maven2/org/apache/ivy/ivy/${ivy.version}/ivy-${ivy.version}.jar"/>
     </target>
 
+    <!-- Installs IVY -->
+    <target name="install-ivy" description="Installs IVY">
+        <path id="ivy.lib.path">
+            <pathelement location="${ant.lib.dir}"/>
+        </path>
+    </target>
+
     <!--Initialize build process-->
-    <target name="init" depends="clean, ivy-install" description="resolve dependencies">
+    <target name="init" depends="clean, install-ivy" description="resolve dependencies">
         <ivy:resolve/>
         <ivy:report todir='${ivy.reports.dir}' graph='false' xml='false'/>
         <ivy:cachepath pathid="compile.path" conf="compile"/>
