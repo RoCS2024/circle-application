@@ -86,7 +86,7 @@
     </target>
 
     <!-- Build   -->
-    <target name="build" depends="test"/>
+    <target name="build" depends="ivy-install"/>
 
     <!-- Create jar   -->
     <target name="build-jar" depends="build">
