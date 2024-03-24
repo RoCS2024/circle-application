@@ -15,11 +15,18 @@
 
     <!-- Clean -->
     <target name="clean" description="remove build directory">
-        <delete dir="${build.dir}"/>
+        <delete includeemptydirs="true">
+            <fileset dir="." includes="${clean.dirs}"/>
+        </delete>
+    </target>
+
+    <!-- Install IVY -->
+    <target name="ivy-install" description="Installs IVY">
+        <get dest="${user.home}/.ant/lib/ivy-${ivy.version}.jar" src="https://repo1.maven.org/maven2/org/apache/ivy/ivy/${ivy.version}/ivy-${ivy.version}.jar"/>
     </target>
 
     <!--Initialize build process-->
-    <target name="init" depends="clean" description="resolve dependencies">
+    <target name="init" depends="clean, ivy-install" description="resolve dependencies">
         <ivy:resolve/>
         <ivy:report todir='${ivy.reports.dir}' graph='false' xml='false'/>
         <ivy:cachepath pathid="compile.path" conf="compile"/>
