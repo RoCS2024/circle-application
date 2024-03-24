@@ -24,6 +24,7 @@ jobs:
     - name: Install IVY
       run: |
         cd /usr/share/ant/lib
+        ls
         wget https://repo1.maven.org/maven2/org/apache/ant/ant-junitlauncher/1.10.14/ant-junitlauncher-1.10.14.jar 
         mkdir junit
         cd /usr/share/ant/lib/junit
